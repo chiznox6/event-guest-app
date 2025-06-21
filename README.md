@@ -45,3 +45,6 @@ A simple JavaScript-based web application to manage an event guest list dynamica
 
 Created by James as part of a JavaScript DOM manipulation challenge.
 
+## Project Git-hub Link
+
+https://github.com/chiznox6/event-guest-app.git
