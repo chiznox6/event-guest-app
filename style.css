@@ -1,0 +1,98 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #667eea, #764ba2);
+  margin: 0;
+  padding: 40px;
+  color: #333;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+input, select, button {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#guest-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #f9f9f9;
+  border-left: 6px solid;
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.Friend {
+  border-color: #4CAF50;
+}
+.Family {
+  border-color: #2196F3;
+}
+.Colleague {
+  border-color: #FFC107;
+}
+
+.timestamp {
+  font-size: 12px;
+  color: #888;
+  margin-left: 10px;
+}
+
+#guest-list button {
+  margin-left: 8px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#guest-list button:hover {
+  background-color: #e53935;
+}
+
+#guest-list button:nth-child(3) {
+  background-color: #2196F3;
+}
+
+#guest-list button:nth-child(3):hover {
+  background-color: #1976D2;
+}
