@@ -1,50 +1,49 @@
-# event-guest-app
+## Event-Guest-App/
 
-A simple JavaScript-based web application to manage an event guest list dynamically — add, edit, remove, and track RSVP statuses.
+## Folder Structure
+├── index.html
+├── style.css
+└── index.js
+    README.md
 
-## 🚀 Features
+#  Event-Guest-App
 
-- Add guest names with categories (Friend, Family, Colleague)
-- Limit guest list to 10 people
-- Toggle RSVP status (Attending / Not Attending)
-- View timestamp for each guest
-- Edit guest names
-- Delete guests from the list
-- Styled using modern CSS
-
-## 📁 File Structure
-
-├── index.html  # Main HTML structure
-├── style.css   # Styling (CSS)
-└── index.js    # App logic (JavaScript)
+This is a modern web app that lets you manage an event guest list using HTML, CSS, and JavaScript — no page reloads, all DOM manipulation and event-driven logic. Built for Phase 1 JavaScript code challenge.
 
 
-## 🧠 Technologies Used
+##  Project Structure
 
-- HTML5
-- CSS3
-- JavaScript 
+├── index.html # Main layout
+├── style.css # Styling (modern, colorful)
+└── index.js # JavaScript logic (no src/)
 
-## 🛠️ How to Use
 
-1. Clone or download this repository.
-2. Open `index.html` in any browser.
-3. Use the form to add guests.
-4. Click buttons next to each guest to:
-   - Toggle RSVP
-   - Edit name
-   - Remove from list
+##  Features (Core + Stretch)
 
-## ✅ Project Goals
+ Feature                    
 
-- Practice DOM manipulation with JavaScript
-- Work with events and `event.preventDefault()`
-- Implement interactive UI updates without page reload
+ Add a guest (via form)           
+ Display guest in list            
+ Delete a guest                   
+ Limit list to 10 guests          
+ Toggle RSVP (Attending/Not Attending)   
+ Categorize guest (Friend, Family, Colleague)    
+ Timestamp when added             
+ Edit guest name                  
 
-## ✍️ Author
 
-Created by James as part of a JavaScript DOM manipulation challenge.
+##  Learning Goals Met
 
-## Project Git-hub Link
+  DOM manipulation (append, render, update)
+  `event.preventDefault()` usage
+  Add/delete/toggle elements dynamically
+  JavaScript form handling
+  Clean project organization and logic
 
-https://github.com/chiznox6/event-guest-app.git
+
+
+##  How to Run This Project
+
+1. Download or clone the repo:
+   ```bash
+   git clone https://github.com/chiznox6/event-guest-app.git
