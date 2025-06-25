@@ -1,54 +1,99 @@
-const form = document.getElementById("guest-form");
-const input = document.getElementById("guest-name");
-const categorySelect = document.getElementById("guest-category");
-const guestList = document.getElementById("guest-list");
+//  references to DOM elements
+const guestForm = document.getElementById('guest-form');
+const guestNameInput = document.getElementById('guest-name');
+const guestCategorySelect = document.getElementById('guest-category');
+const guestList = document.getElementById('guest-list');
+const guestCountDisplay = document.getElementById('guest-count');
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
+// Guest state
+let guests = [];
+const MAX_GUESTS = 10;
 
-  if (guestList.children.length >= 10) {
-    alert("Guest list full! Maximum 10 people.");
+// Utility: format current time
+function formatTime() {
+  const now = new Date();
+  return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
+
+// Render all guests
+function renderGuests() {
+  guestList.innerHTML = '';
+  guests.forEach((guest, index) => {
+    const li = document.createElement('li');
+    li.classList.add('guest', guest.category);
+
+    const guestInfo = document.createElement('div');
+    guestInfo.className = 'guest-info';
+    guestInfo.innerHTML = `
+      <p><strong>${guest.name}</strong> <span class="rsvp ${guest.attending ? 'attending' : 'not-attending'}">(${guest.attending ? 'Attending' : 'Not Attending'})</span></p>
+      <small>${guest.category} • Added at ${guest.time}</small>
+    `;
+
+    const actions = document.createElement('div');
+    actions.className = 'actions';
+
+    const rsvpBtn = document.createElement('button');
+    rsvpBtn.textContent = 'Toggle RSVP';
+    rsvpBtn.addEventListener('click', () => {
+      guest.attending = !guest.attending;
+      renderGuests();
+    });
+
+    const editBtn = document.createElement('button');
+    editBtn.textContent = 'Edit';
+    editBtn.addEventListener('click', () => {
+      const newName = prompt('Update guest name:', guest.name);
+      if (newName && newName.trim() !== '') {
+        guest.name = newName.trim();
+        renderGuests();
+      }
+    });
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Remove';
+    deleteBtn.addEventListener('click', () => {
+      guests.splice(index, 1);
+      renderGuests();
+      updateCount();
+    });
+
+    actions.append(rsvpBtn, editBtn, deleteBtn);
+    li.append(guestInfo, actions);
+    guestList.appendChild(li);
+  });
+}
+
+// Update the guest count display
+function updateCount() {
+  guestCountDisplay.textContent = `Guests: ${guests.length} / ${MAX_GUESTS}`;
+}
+
+// Handle form submission
+guestForm.addEventListener('submit', function (e) {
+  e.preventDefault(); // Prevent page reload
+
+  const name = guestNameInput.value.trim();
+  const category = guestCategorySelect.value;
+
+  if (!name) return;
+
+  if (guests.length >= MAX_GUESTS) {
+    alert('Guest list is full (10 guests max).');
     return;
   }
 
-  const name = input.value.trim();
-  const category = categorySelect.value;
-  const timestamp = new Date().toLocaleString();
+  const newGuest = {
+    name,
+    category,
+    time: formatTime(),
+    attending: true
+  };
 
-  const li = document.createElement("li");
-  li.classList.add(category);
-
-  const nameSpan = document.createElement("span");
-  nameSpan.textContent = name + " - " + category;
-
-  const timeSpan = document.createElement("span");
-  timeSpan.textContent = ` | Added: ${timestamp}`;
-  timeSpan.className = "timestamp";
-
-  const rsvpButton = document.createElement("button");
-  rsvpButton.textContent = "RSVP: Not Attending";
-  rsvpButton.addEventListener("click", () => {
-    rsvpButton.textContent =
-      rsvpButton.textContent === "RSVP: Attending"
-        ? "RSVP: Not Attending"
-        : "RSVP: Attending";
-  });
-
-  const editButton = document.createElement("button");
-  editButton.textContent = "Edit";
-  editButton.addEventListener("click", () => {
-    const newName = prompt("Enter new name:", name);
-    if (newName) {
-      nameSpan.textContent = newName + " - " + category;
-    }
-  });
-
-  const deleteButton = document.createElement("button");
-  deleteButton.textContent = "Remove";
-  deleteButton.addEventListener("click", () => li.remove());
-
-  li.append(nameSpan, timeSpan, rsvpButton, editButton, deleteButton);
-  guestList.appendChild(li);
-
-  form.reset();
+  guests.push(newGuest);
+  guestForm.reset();
+  renderGuests();
+  updateCount();
 });
+
+// Initialize
+updateCount();
